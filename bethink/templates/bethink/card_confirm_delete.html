@@ -1,0 +1,29 @@
+{% extends "bethink/base.djt" %}
+
+{% block content %}
+    <div class="container-fluid">
+
+        <!-- Form -->
+        <form action="" method="post">
+
+            {% csrf_token %}
+
+            <div class="col-md-auto">
+                <div class="jumbotron">
+                    <h3>Вы уверены, что хотете удалить напоминание: "{{ card.title }}"?</h3>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-auto">
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block">Удалить</button>
+
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+{% endblock content %}

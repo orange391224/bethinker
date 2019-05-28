@@ -1,0 +1,17 @@
+{% extends "bethink/base.djt" %}
+
+{% load bootstrap4 %}       {# import bootstrap4/bootstrap3 #}
+
+{% include "bootstrap_datepicker_plus/input.html" %}
+
+{% block content %}
+    <div class="col-md-auto">
+        <form method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <input type="submit" value="Сохранить">
+        </form>
+
+    </div>
+
+{% endblock content %}

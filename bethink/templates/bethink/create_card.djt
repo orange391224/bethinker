@@ -1,0 +1,80 @@
+{% extends "bethink/base.djt" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+
+                <!-- Form - Blog Post -->
+                <form action="" method="post" class="form-horizontal p-5">
+
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+
+                            <!-- Errors - title -->
+                            {% if form.title.errors %}
+                                <label class="alert alert-danger">{{ form.title.errors }}</label>
+                            {% endif %}
+
+                            <!-- Form field - title -->
+                            <input type="text"
+                                   placeholder="Заголовок"
+                                   class="form-control"
+                                   name="title"
+                                   value="{{ form.title.value|default:"" }}">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+
+                            <!-- Errors - body -->
+                            {% if form.body.errors %}
+                                <label class="alert alert-danger">{{ form.body.errors }}</label>
+                            {% endif %}
+
+                            <!-- Form fields - body -->
+                            <textarea placeholder="Текст"
+                                      class="form-control"
+                                      name="body">{{ form.body.value|default:"" }}</textarea>
+
+                        </div>
+                    </div>
+
+
+                <div class="form-group">
+                        <div class="col-sm-12">
+
+                            <!-- Errors - body -->
+                            {% if form.notification_date.errors %}
+                                <label class="alert alert-danger">{{ form.notification_date.errors }}</label>
+                            {% endif %}
+
+                            <!-- Form fields - body -->
+                            <textarea placeholder="Напомнить"
+                                      class="form-control"
+                                      name="notification_date">{{ form.notification_date.value|default:"" }}</textarea>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-block">Сохранить</button>
+
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}

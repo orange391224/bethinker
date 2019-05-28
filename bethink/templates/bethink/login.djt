@@ -1,0 +1,74 @@
+{% extends "bethink/base.djt" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center" style="margin-top:20px">
+            <div class="col align-self-center">
+
+                <!-- Errors messages -->
+                <div class="col-sm-9">
+
+                    {% if form.errors %}
+                        <div class="alert alert-danger">Пара логин/пароль не совпадает. Повторите попытку.</div>
+                    {% else %}
+                        {% if next %}
+                            {% if user.is_authenticated %}
+                                <div class="alert alert-info">Your account doesn't have access to this page. To proceed,
+                                    please login with an account that has access.
+                                </div>
+                            {% else %}
+                                <div class="alert alert-info">Пожалуйста, авторизуйтесь, чтобы увидеть данную страницу.</div>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+
+                <!-- Form - Login -->
+                <form method="post" action="{% url 'login' %}" class="form-horizontal">
+
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <div class="col-md-9">
+
+                            <!-- Form field - username -->
+                            <input type="text"
+                                   placeholder="Логин"
+                                   class="form-control"
+                                   name="username">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-9">
+
+                            <!-- Form field - password -->
+                            <input type="password"
+                                   placeholder="Пароль"
+                                   class="form-control"
+                                   name="password">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-9">
+
+                            <input type="submit" class="btn  btn-primary btn-block" value="Войти"/>
+
+                        </div>
+                    </div>
+
+                    <!-- Form field - next -->
+                    <!-- Used to configure redirect after successful login -->
+                    <input type="hidden" name="next" value="{% url 'bethink:home' %}"/>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
